@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Trash } from "lucide";
 import { PlusIcon, Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import { useAppStore } from "../lib/zustand";
 
 export default function ItemList({ info }) {
-  const [items, setItems] = useState(
+  const { setItems } = useAppStore();
+  const [localItems, setLocalItems] = useState(
     info
       ? info
       : [
@@ -16,19 +17,23 @@ export default function ItemList({ info }) {
             quantity: 1,
             price: 156,
             get total() {
-              return this.price * this.quantity;
+              return +this.price * +this.quantity;
             },
           },
         ]
   );
 
+  useEffect(() => {
+    setItems(localItems);
+  }, [JSON.stringify(localItems)]);
+
   function handleChange(e, id) {
-    const changedItem = items.find((el) => {
+    const changedItem = localItems.find((el) => {
       return el.id === id;
     });
     changedItem[e.target.name] = e.target.value;
 
-    setItems((prev) => {
+    setLocalItems((prev) => {
       const mapped = prev.map((el) => {
         if (el.id === id) {
           return changedItem;
@@ -42,8 +47,8 @@ export default function ItemList({ info }) {
 
   function handleClick(type, id) {
     if (type === "add") {
-      if (items.at(-1).name.trim() !== "") {
-        setItems((prev) => {
+      if (localItems.at(-1).name.trim() !== "") {
+        setLocalItems((prev) => {
           return [
             ...prev,
             {
@@ -61,11 +66,11 @@ export default function ItemList({ info }) {
         toast.info("Write last item's name");
       }
     } else if (type === "delete") {
-      if (items.length === 1) {
+      if (localItems.length === 1) {
         toast.info("Should be at least 1 element!");
       } else {
-        const filtered = items.filter((el) => el.id !== id);
-        setItems(filtered);
+        const filtered = localItems.filter((el) => el.id !== id);
+        setLocalItems(filtered);
       }
     }
   }
@@ -79,7 +84,7 @@ export default function ItemList({ info }) {
         <span>Total</span>
       </div>
       <ul className="flex flex-col gap-5 mb-5">
-        {items.map(({ name, quantity, price, total, id }) => {
+        {localItems.map(({ name, quantity, price, total, id }) => {
           return (
             <li className="flex items-center justify-between" key={id}>
               <Input

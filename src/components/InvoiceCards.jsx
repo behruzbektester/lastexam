@@ -6,14 +6,13 @@ import { useAppStore } from "../lib/zustand";
 import NotFoundComponent from "./NotFoundComponent";
 
 export default function InvoiceCards() {
-  const { filter } = useAppStore();
+  const { filter, invoices, setInvoices } = useAppStore();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    getInvoices("/invoices", filter)
+    getInvoices(filter)
       .then((res) => {
         setInvoices(res);
       })
@@ -39,7 +38,7 @@ export default function InvoiceCards() {
   return (
     <div className="base-container flex flex-col gap-4">
       {invoices.map((el, index) => {
-        const { createdAt, invoiceId, clientName, total, status, id } = el;
+        const { createdAt, clientName, total, status, id } = el;
 
         return (
           <MyCard

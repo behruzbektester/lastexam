@@ -22,13 +22,15 @@ export default function MyCard({
       onClick={() => {
         navigate(`/${id}`);
       }}
-      className="border-2 border-transparent hover:border-blue-400 transition-colors"
+      className="border-2 border-transparent hover:border-blue-400 transition-colors cursor-pointer"
     >
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>#{id}</CardTitle>
-          <CardDescription>{createdAt}</CardDescription>
-          <span className="w-[110px]">{clientName}</span>
+          <CardDescription className="text-[#888EB0]">
+            {createdAt}
+          </CardDescription>
+          <span className="w-[110px] text-[#888EB0]">{clientName}</span>
           <span>£{total}</span>
           <StatusBadje status={status} />
           <ArrowRight className="text-[#7C5DFA]" />

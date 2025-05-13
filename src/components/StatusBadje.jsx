@@ -18,19 +18,22 @@ export default function StatusBadje({ status = "draft" }) {
       bg: "rgba(255,143,0,0.05)",
     },
   };
+
+  const current = style[status] || style["draft"]; // fallback to "draft" style
+
   return (
     <span
       className={`${buttonVariants({
         variant: "outline",
       })} min-w-[104px] border-none`}
       style={{
-        backgroundColor: style[status].bg,
+        backgroundColor: current.bg,
       }}
     >
       <span
-        className={`inline-block w-2 h-2 rounded-full ${style[status].dote}`}
+        className={`inline-block w-2 h-2 rounded-full ${current.dote}`}
       ></span>
-      <span className={`capitalize ${style[status].text}`}>{status}</span>
+      <span className={`capitalize ${current.text}`}>{status}</span>
     </span>
   );
 }
