@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -40,6 +41,7 @@ export default function Signup() {
           className="border p-2"
         />
         <button
+          onClick={() => navigate("/")}
           type="submit"
           className="bg-blue-500 text-white p-2 cursor-pointer"
         >

@@ -86,10 +86,10 @@ export default function Header() {
         </DropdownMenu>
 
         <Button
-          className="bg-[#7C5DFA] w-[150px] h-12 rounded-3xl cursor-pointer hover:bg-[#9277FF]"
+          className="bg-[#7C5DFA] w-[150px] h-12 rounded-3xl cursor-pointer hover:bg-[#9277FF] text-white"
           onClick={setSheetOpen}
         >
-          <PlusCircleIcon className="w-2.5 h-2.5 stroke-[#7C5DFA] fill-white text-[10px]" />
+          <PlusCircleIcon className="w-2.5 h-2.5 stroke-[#7C5DFA] fill-white text-[10px] text-white" />
           New Invoice
         </Button>
       </div>

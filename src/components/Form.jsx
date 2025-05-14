@@ -235,13 +235,25 @@ export default function Form({ info, setSheetOpen }) {
           </>
         ) : (
           <>
-            <Button type="button" variant="outline">
+            <Button
+              className="bg-[#F9FAFE] text-[#7E88C3] cursor-pointer"
+              variant="ghost"
+              type="button"
+            >
               Discard
             </Button>
-            <Button id="draft" variant="secondary" disabled={loading}>
+            <Button
+              className="bg-[#373B53] text-[#888EB0] rounded-3xl hover:bg-[#0C0E16] cursor-pointer"
+              id="draft"
+              disabled={loading}
+            >
               {loading ? "Loading..." : "Save as Draft"}
             </Button>
-            <Button id="pending" disabled={loading}>
+            <Button
+              className="bg-[#7C5DFA] rounded-3xl text-white py-4 px-6 hover:bg-[#9277FF] cursor-pointer"
+              id="pending"
+              disabled={loading}
+            >
               {loading ? "Loading..." : "Save & Send"}
             </Button>
           </>
