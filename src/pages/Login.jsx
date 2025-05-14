@@ -19,7 +19,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center mt-[40%]">
+    <div className="flex items-center mt-[10%]">
       <form
         onSubmit={handleLogin}
         className="flex flex-col gap-2 base-container"

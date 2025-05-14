@@ -18,7 +18,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex items-center mt-[40%]">
+    <div className="flex items-center mt-[10%]">
       <form
         onSubmit={handleSignup}
         className="flex flex-col gap-2 base-container"
